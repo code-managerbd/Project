@@ -1,0 +1,19 @@
+CREATE TABLE [dbo].[Workers] (
+    [WorkerId]      INT             NOT NULL,
+    [WorkerName]    NVARCHAR (40)   NOT NULL,
+    [Picture]       VARBINARY (MAX) NULL,
+    [WorkRole]      NVARCHAR (30)   NOT NULL,
+    [WorkStartDate] DATE            NOT NULL,
+	PayRatePerDay MONEY NOT NULL,
+    PRIMARY KEY CLUSTERED ([WorkerId] ASC)
+);
+GO
+CREATE TABLE [dbo].[Payments] (
+    [PaymentId]   INT   NOT NULL,
+    [PaymentDate] DATE  NOT NULL,
+    [WorkerId]    INT   NOT NULL,
+    [Amount]      MONEY NOT NULL,
+    PRIMARY KEY CLUSTERED ([PaymentId] ASC),
+    FOREIGN KEY ([WorkerId]) REFERENCES [dbo].[Workers] ([WorkerId])
+);
+GO
